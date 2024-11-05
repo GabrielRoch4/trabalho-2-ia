@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Galindo&display=swap');
+
+/*#000099 azul*/
+/*#efae54 amarelo*/
+/*#dc143c* vermelho*/
+/*#00ff00 verde*/
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #000099;
+    font-family: "Galindo", sans-serif;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    color: #efae54;
+    font-size: 8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    /* background-color: chartreuse; */
+}
+
+.ball-green, .ball-red {
+    width: 120px;
+    height: 120px;
+    border-radius: 200px;
+    /* margin: 0 20px; */
+    border: 6px solid #ffffff;
+}
+
+.ball-green {
+    background-color: #00ff00;
+    margin-left: 40px;
+    margin-right: 10px;
+}
+
+.ball-red { 
+    background-color: #dc143c;
+}
