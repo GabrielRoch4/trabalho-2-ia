@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Galindo&display=swap');
 
-/*#000099 azul*/
-/*#efae54 amarelo*/
-/*#dc143c* vermelho*/
-/*#00ff00 verde*/
+/* https://celke.com.br/artigo/tabela-de-cores-html-nome-hexadecimal-rgb */
+
+:root {
+    --azul: #000099;
+    --amarelo: #efae54;
+    --verde: #008000;
+    --vermelho: #FF6347;
+    --branco: #ffffff;
+}
 
 * {
     padding: 0;
@@ -13,7 +18,7 @@
 body {
     width: 100vw;
     height: 100vh;
-    background-color: #000099;
+    background-color: var(--azul);
     font-family: "Galindo", sans-serif;
     display: flex;
     justify-content: center;
@@ -22,7 +27,7 @@ body {
 }
 
 .title {
-    color: #efae54;
+    color: var(--amarelo);
     font-size: 8rem;
     font-weight: bold;
     display: flex;
@@ -37,15 +42,34 @@ body {
     height: 120px;
     border-radius: 200px;
     /* margin: 0 20px; */
-    border: 6px solid #ffffff;
+    border: 6px solid var(--branco);
 }
 
 .ball-green {
-    background-color: #00ff00;
+    background-color: var(--verde);
     margin-left: 40px;
     margin-right: 10px;
 }
 
 .ball-red { 
-    background-color: #dc143c;
+    background-color: var(--vermelho);
 }
+
+.button-play {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: var(--branco);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: var(--azul);
+    text-decoration: none;
+    border-radius: 30px;  
+    transition: transform 0.3s ease;
+}
+
+.button-play:hover {
+    transform: scale(1.1);
+}
+
