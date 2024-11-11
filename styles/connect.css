@@ -22,6 +22,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .connect {
@@ -35,24 +36,21 @@ body {
 }
 
 .board {
-    border-spacing: 5px; /* Espaço entre as células */
-    border-collapse: separate; /* Desfaz a fusão das bordas das células */
+    border-spacing: 5px;
+    border-collapse: separate;
 }
 
 .cell {
     width: 50px;
     height: 50px;
     background-color: var(--azul);
-    border-radius: 50%; /* Círculo */
-    padding: 0;
-    /* Alinhamento das células, evitando espaçamento extra */
+    border-radius: 50%;
     text-align: center;
     vertical-align: middle;
 }
 
 .indicator {
     position: relative;
-    /* background-color: #efae54; */
     width: 100%;
     height: 5vh;
 }
@@ -62,7 +60,7 @@ body {
     font-size: 2.2rem;
     color: var(--amarelo);
     top: 0;
-    left: 50%; /* Centraliza a seta */
+    left: 50%;
     transform: translateX(-50%);
     transition: left 0.2s;
     pointer-events: none;
@@ -71,18 +69,69 @@ body {
 /* Animação de queda */
 @keyframes fall {
     0% {
-        transform: translateY(-200px); /* Inicia acima da célula */
+        transform: translateY(-200px);
         opacity: 0;
     }
     100% {
-        transform: translateY(0); /* Finaliza na posição da célula */
+        transform: translateY(0);
         opacity: 1;
     }
 }
 
-/* Classe para a célula com animação de queda */
 .falling {
     animation: fall 0.5s ease-in-out forwards;
 }
 
+/* Estilos do placar e informações de jogo */
+.scoreboard {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: var(--branco);
+    color: var(--azul);
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    width: 280px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
 
+.player-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.player {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.score {
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.game-info {
+    text-align: center;
+}
+
+.timer {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.algorithm-difficulty {
+    font-size: 1.1rem;
+}
+
+/* Ajuste no espaçamento entre o nome dos jogadores e o placar */
+.player-info .player, .player-info .score {
+    flex: 1;
+    text-align: center;
+}

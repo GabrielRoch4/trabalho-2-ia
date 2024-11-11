@@ -1,5 +1,17 @@
 const cells = document.querySelectorAll('.cell');
 const arrowIndicator = document.querySelector('.arrow-indicator');
+const playerName = document.querySelector('#username')
+const algorithm = document.querySelector('#algorithm')
+const difficulty = document.querySelector('#difficulty')
+let score1 = 0 
+let score2 = 0
+let score = score1+" x "+score2
+
+document.querySelector("#player-name-display").innerHTML = playerName
+document.querySelector(".score").innerHTML = score
+document.querySelector(".score").innerHTML = score
+document.querySelector("#algorithm-display").innerHTML = algorithm
+document.querySelector("#difficulty-display").innerHTML = difficulty
 
 // Função para identificar a coluna e colorir a próxima célula vazia com animação
 function colorNextEmptyCell(event) {
@@ -30,7 +42,7 @@ function colorNextEmptyCell(event) {
 
             // Define a cor após a animação
             setTimeout(() => {
-                cell.style.backgroundColor = 'var(--vermelho)';
+                cell.style.backgroundColor = 'var(--vermelho)';  // Ou a cor desejada
             }, 500); // O tempo de animação (500ms) para que a cor seja aplicada após a queda
             break; // Interrompe o loop após encontrar e colorir a célula vazia
         }
@@ -78,4 +90,24 @@ cells.forEach(cell => {
     cell.addEventListener('mouseout', removeHighlight);
     cell.addEventListener('mouseover', showArrow);
     cell.addEventListener('mouseout', hideArrow);
+});
+
+// Carregar os dados do LocalStorage assim que a página for carregada
+window.addEventListener('load', function() {
+    // Recuperando os dados do LocalStorage
+    const playerName = localStorage.getItem('playerName');
+    const algorithm = localStorage.getItem('algorithm');
+    const difficulty = localStorage.getItem('difficulty');
+
+    // Atualizando a interface com os dados
+    if (playerName) {
+        document.getElementById('player-name-display').textContent = playerName;
+    }
+    if (algorithm) {
+        document.getElementById('algorithm-display').textContent = algorithm === 'minimax' ? 'Mini-Max' : 'Alfa-Beta';
+    }
+    if (difficulty) {
+        const difficultyNames = ['Fácil', 'Médio', 'Difícil', 'Experiente'];
+        document.getElementById('difficulty-display').textContent = difficultyNames[difficulty - 1];
+    }
 });

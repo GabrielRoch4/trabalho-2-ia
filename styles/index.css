@@ -100,22 +100,30 @@ body {
     animation-delay: 0.5s; /* Atraso para criar o efeito */
 }
 
+/* Adiciona um espaçamento superior ao botão */
 .button-play {
-    margin-top: 20px;
+    font-family: "Galindo", sans-serif; /* Certificando-se de que o botão use a mesma fonte */
+    margin-top: 40px; /* Espaço maior para garantir que fique afastado */
     padding: 15px;
     background-color: var(--branco);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5rem; /* Ajustado para melhor leitura */
+    font-size: 2.5rem; 
     color: var(--azul);
     text-decoration: none;
     border-radius: 30px;  
     transition: transform 0.3s ease;
+    border: 2px solid var(--azul); 
+    width: 250px; /* Ajusta a largura do botão */
+    margin-left: auto; /* Centraliza o botão à esquerda */
+    margin-right: auto; /* Centraliza o botão à direita */
 }
 
 .button-play:hover {
     transform: scale(1.1);
+    background-color: var(--verde); 
+    color: var(--branco);
 }
 
 /* Opções de Algoritmo e Dificuldade */

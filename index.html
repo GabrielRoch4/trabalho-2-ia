@@ -15,32 +15,61 @@
         <div class="ball-red"></div>
     </div>
 
-    <!-- Campo para inserir o nome do usuário -->
-    <div class="user-input">
-        <label for="username">Insira seu nome:</label>
-        <input type="text" id="username" placeholder="Seu nome">
-    </div>
+    <form id="game-form">
+        <div class="user-input">
+            <label for="username">Insira seu nome:</label>
+            <input required type="text" id="username" placeholder="Seu nome">
+        </div>
 
-    <!-- Opções de Algoritmo e Dificuldade -->
-    <div class="options">
-        <label for="algorithm">Escolha o Algoritmo:</label>
-        <select id="algorithm">
-            <option value="minimax">Minimax</option>
-            <option value="alphabeta">Alfa-Beta</option>
-        </select>
+        <!-- Opções de Algoritmo e Dificuldade -->
+        <div class="options">
+            <label for="algorithm">Escolha o Algoritmo:</label>
+            <select id="algorithm" required>
+                <option value="minimax">Minimax</option>
+                <option value="alphabeta">Alfa-Beta</option>
+            </select>
 
-        <label for="difficulty">Escolha a Dificuldade:</label>
-        <select id="difficulty">
-            <option value="1">Fácil</option>
-            <option value="2">Médio</option>
-            <option value="3">Difícil</option>
-            <option value="4">Experiente</option>
-        </select>
-    </div>
+            <label for="difficulty">Escolha a Dificuldade:</label>
+            <select id="difficulty" required>
+                <option value="1">Fácil</option>
+                <option value="2">Médio</option>
+                <option value="3">Difícil</option>
+                <option value="4">Experiente</option>
+            </select>
+        </div>
 
-    <!-- Botão para Jogar -->
-    <a class="button-play" href="pages/connect.html">
+        <!-- Botão para Jogar -->
+        <button type="submit" id="start-game" class="button-play">
+            Jogar
+        </button>
+    </form>
+
+    <!-- Botão para Jogar
+    <button id="start-game" class="button-play">
         Jogar
-    </a>    
+    </button> -->
+
+    <script>
+        document.getElementById("game-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Impede o envio do formulário para validação customizada
+
+            const playerName = document.getElementById('username').value;
+            const algorithm = document.getElementById('algorithm').value;
+            const difficulty = document.getElementById('difficulty').value;
+
+            if (playerName === "") {
+                alert("Por favor, insira seu nome.");
+                return;
+            }
+
+            // Criar a URL com parâmetros
+            const url = `pages/connect.html?playerName=${encodeURIComponent(playerName)}&algorithm=${encodeURIComponent(algorithm)}&difficulty=${encodeURIComponent(difficulty)}`;
+            
+            // Redirecionar para a página connect.html com os parâmetros
+            window.location.href = url;
+        });
+    </script>
+
+    <script src="scripts/connect-animacoes.js"></script>
 </body>
 </html>

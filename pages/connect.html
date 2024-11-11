@@ -7,6 +7,25 @@
     <link rel="stylesheet" href="../styles/connect.css">
 </head>
 <body>
+    <div class="scoreboard">
+        <div class="player-info">
+            <div class="player">
+                <span id="player-name-display"></span> <!-- Aqui será atualizado com o nome do jogador -->
+            </div>
+            <div class="score"></div>
+            <div class="player">
+                <span>Dani IA</span>
+            </div>
+        </div>
+        <div class="game-info">
+            <div class="timer">00:00</div>
+            <div class="algorithm-difficulty">
+                <div>Algoritmo: <span id="algorithm-display"></span></div> <!-- Algoritmo -->
+                <div>Dificuldade: <span id="difficulty-display"></span></div> <!-- Dificuldade -->
+            </div>
+        </div>
+    </div>
+
     <div class="connect">
         <div class="indicator">
             <div class="arrow-indicator" style="display: none;">&#9660;</div> <!-- Seta indicadora de coluna -->
@@ -94,5 +113,32 @@
     <script src="../scripts/connect-animacoes.js"></script>
     <script src="../scripts/connect-mini-max.js"></script>
     <script src="../scripts/connect-alfa-beta.js"></script>
+
+    <script>
+        window.addEventListener('load', function() {
+            // Função para pegar os parâmetros da URL
+            function getQueryParameter(name) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(name);
+            }
+
+            // Recuperando os parâmetros da URL
+            const playerName = getQueryParameter('playerName');
+            const algorithm = getQueryParameter('algorithm');
+            const difficulty = getQueryParameter('difficulty');
+
+            // Atualizando a interface com os dados
+            if (playerName) {
+                document.getElementById('player-name-display').textContent = playerName;
+            }
+            if (algorithm) {
+                document.getElementById('algorithm-display').textContent = algorithm === 'minimax' ? 'Mini-Max' : 'Alfa-Beta';
+            }
+            if (difficulty) {
+                const difficultyNames = ['Fácil', 'Médio', 'Difícil', 'Experiente'];
+                document.getElementById('difficulty-display').textContent = difficultyNames[difficulty - 1];
+            }
+        });
+    </script>
 </body>
 </html>
