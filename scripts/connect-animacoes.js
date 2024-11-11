@@ -111,3 +111,34 @@ window.addEventListener('load', function() {
         document.getElementById('difficulty-display').textContent = difficultyNames[difficulty - 1];
     }
 });
+
+// Inicialização do cronômetro
+let timer = 0;
+let timerInterval;
+const timerDisplay = document.querySelector('.timer');
+
+// Função para iniciar o cronômetro
+function startTimer() {
+    // Limpa qualquer intervalo anterior
+    clearInterval(timerInterval);
+
+    // Inicia o cronômetro
+    timerInterval = setInterval(() => {
+        timer++;
+        const minutes = Math.floor(timer / 60);
+        const seconds = timer % 60;
+        // Atualiza a exibição do cronômetro no formato mm:ss
+        timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }, 1000); // Atualiza a cada 1 segundo
+}
+
+// Função para parar o cronômetro (caso precise mais tarde)
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+// Para exemplo, vamos iniciar o cronômetro ao carregar a página
+window.addEventListener('load', function() {
+    startTimer(); // Inicia o cronômetro assim que a página for carregada
+});
+
