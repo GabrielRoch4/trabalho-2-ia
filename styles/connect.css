@@ -135,3 +135,17 @@ body {
     flex: 1;
     text-align: center;
 }
+
+.turn-indicator {
+    position: absolute;
+    top: 95px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--branco);
+    color: var(--azul);
+    font-size: 1.6rem;
+    padding: 10px 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}

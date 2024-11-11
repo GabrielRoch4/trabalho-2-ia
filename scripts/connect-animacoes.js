@@ -1,22 +1,35 @@
 const cells = document.querySelectorAll('.cell');
 const arrowIndicator = document.querySelector('.arrow-indicator');
-const playerName = document.querySelector('#username')
-const algorithm = document.querySelector('#algorithm')
-const difficulty = document.querySelector('#difficulty')
-let score1 = 0 
-let score2 = 0
-let score = score1+" x "+score2
+const timerDisplay = document.querySelector('.timer');
+let score1 = 0;
+let score2 = 0;
+let timer = 0;
+let timerInterval;
 
-document.querySelector("#player-name-display").innerHTML = playerName
-document.querySelector(".score").innerHTML = score
-document.querySelector(".score").innerHTML = score
-document.querySelector("#algorithm-display").innerHTML = algorithm
-document.querySelector("#difficulty-display").innerHTML = difficulty
+// Recupera o nome do jogador a partir da URL ou usa um valor padrão
+const playerName = new URLSearchParams(window.location.search).get('playerName') || 'Jogador 1';
+const playerDisplay = document.querySelector("#player-name-display");
+playerDisplay.textContent = playerName;
 
-// Função para identificar a coluna e colorir a próxima célula vazia com animação
+// Variável para controlar o turno. true para Jogador 1 e false para Jogador 2.
+let isPlayerOneTurn = true;
+
+// Exibe o placar inicial
+document.querySelector(".score").innerHTML = `${score1} x ${score2}`;
+
+// Função para atualizar a exibição do turno
+function updateTurnDisplay() {
+    const currentPlayerName = isPlayerOneTurn ? playerName : "Dani IA";
+    const currentPlayerColor = isPlayerOneTurn ? 'var(--vermelho)' : 'var(--verde)';
+    
+    document.getElementById('current-player').textContent = currentPlayerName;
+    document.getElementById('turn-message').style.color = currentPlayerColor;
+}
+
+// Função para colorir a próxima célula vazia na coluna
 function colorNextEmptyCell(event) {
     const cellId = event.target.id;
-    const column = cellId.split(',')[1]; // Obtém o número da coluna do id
+    const column = cellId.split(',')[1];
 
     // Verifica se todas as células da coluna estão preenchidas
     let allFilled = true;
@@ -33,47 +46,42 @@ function colorNextEmptyCell(event) {
         return;
     }
 
-    // Itera de baixo para cima para encontrar a próxima célula vazia
+    // Define a cor da célula com base no turno atual
+    const cellColor = isPlayerOneTurn ? 'var(--vermelho)' : 'var(--verde)';
+    
+    // Encontra e colore a próxima célula vazia de baixo para cima
     for (let row = 6; row >= 0; row--) {
         const cell = document.getElementById(`${row},${column}`);
         if (cell && cell.style.backgroundColor === '') {
-            // Adiciona a classe de animação de queda
             cell.classList.add('falling');
-
-            // Define a cor após a animação
             setTimeout(() => {
-                cell.style.backgroundColor = 'var(--vermelho)';  // Ou a cor desejada
-            }, 500); // O tempo de animação (500ms) para que a cor seja aplicada após a queda
-            break; // Interrompe o loop após encontrar e colorir a célula vazia
+                cell.style.backgroundColor = cellColor;
+            }, 500);
+            break;
         }
     }
+
+    // Alterna o turno após a jogada
+    isPlayerOneTurn = !isPlayerOneTurn;
+    updateTurnDisplay();
 }
 
-// Adiciona o evento de clique para cada célula
-cells.forEach(cell => {
-    cell.addEventListener('click', colorNextEmptyCell);
-});
-
-// Funções existentes para o indicador de seta e destaque de coluna
+// Funções para manipular o destaque de coluna e indicador de seta
 function highlightColumn(event) {
-    const cellId = event.target.id;
-    const column = cellId.split(',')[1]; // Obtém o número da coluna do id
+    const column = event.target.id.split(',')[1];
     document.querySelectorAll(`.cell[id$=",${column}"]`).forEach(cell => {
         cell.classList.add('highlight');
     });
 }
 
 function removeHighlight(event) {
-    const cellId = event.target.id;
-    const column = cellId.split(',')[1];
+    const column = event.target.id.split(',')[1];
     document.querySelectorAll(`.cell[id$=",${column}"]`).forEach(cell => {
         cell.classList.remove('highlight');
     });
 }
 
 function showArrow(event) {
-    const cellId = event.target.id;
-    const column = cellId.split(',')[1];
     const cellRect = event.target.getBoundingClientRect();
     const indicatorRect = document.querySelector('.indicator').getBoundingClientRect();
     arrowIndicator.style.left = `${cellRect.left + cellRect.width / 2 - indicatorRect.left}px`;
@@ -84,61 +92,33 @@ function hideArrow() {
     arrowIndicator.style.display = 'none';
 }
 
-// Adiciona os eventos para o indicador de seta e destaque de coluna
+// Funções do cronômetro
+function startTimer() {
+    clearInterval(timerInterval);
+    timer = 0;
+    timerInterval = setInterval(() => {
+        timer++;
+        const minutes = Math.floor(timer / 60);
+        const seconds = timer % 60;
+        timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+// Eventos das células
 cells.forEach(cell => {
+    cell.addEventListener('click', colorNextEmptyCell);
     cell.addEventListener('mouseover', highlightColumn);
     cell.addEventListener('mouseout', removeHighlight);
     cell.addEventListener('mouseover', showArrow);
     cell.addEventListener('mouseout', hideArrow);
 });
 
-// Carregar os dados do LocalStorage assim que a página for carregada
-window.addEventListener('load', function() {
-    // Recuperando os dados do LocalStorage
-    const playerName = localStorage.getItem('playerName');
-    const algorithm = localStorage.getItem('algorithm');
-    const difficulty = localStorage.getItem('difficulty');
-
-    // Atualizando a interface com os dados
-    if (playerName) {
-        document.getElementById('player-name-display').textContent = playerName;
-    }
-    if (algorithm) {
-        document.getElementById('algorithm-display').textContent = algorithm === 'minimax' ? 'Mini-Max' : 'Alfa-Beta';
-    }
-    if (difficulty) {
-        const difficultyNames = ['Fácil', 'Médio', 'Difícil', 'Experiente'];
-        document.getElementById('difficulty-display').textContent = difficultyNames[difficulty - 1];
-    }
+// Eventos de carregamento da página
+window.addEventListener('load', () => {
+    updateTurnDisplay(); // Inicializa a exibição do turno
+    startTimer();
 });
-
-// Inicialização do cronômetro
-let timer = 0;
-let timerInterval;
-const timerDisplay = document.querySelector('.timer');
-
-// Função para iniciar o cronômetro
-function startTimer() {
-    // Limpa qualquer intervalo anterior
-    clearInterval(timerInterval);
-
-    // Inicia o cronômetro
-    timerInterval = setInterval(() => {
-        timer++;
-        const minutes = Math.floor(timer / 60);
-        const seconds = timer % 60;
-        // Atualiza a exibição do cronômetro no formato mm:ss
-        timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-    }, 1000); // Atualiza a cada 1 segundo
-}
-
-// Função para parar o cronômetro (caso precise mais tarde)
-function stopTimer() {
-    clearInterval(timerInterval);
-}
-
-// Para exemplo, vamos iniciar o cronômetro ao carregar a página
-window.addEventListener('load', function() {
-    startTimer(); // Inicia o cronômetro assim que a página for carregada
-});
-
