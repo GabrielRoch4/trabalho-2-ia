@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Galindo&display=swap');
+
+/* https://celke.com.br/artigo/tabela-de-cores-html-nome-hexadecimal-rgb */
+
+:root {
+    --azul: #000099;
+    --amarelo: #efae54;
+    --verde: #008000;
+    --vermelho: #FF6347;
+    --branco: #ffffff;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--azul);
+    font-family: "Galindo", sans-serif;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.connect {
+    width: 500px;
+    height: 500px;
+    background-color: white;
+}
