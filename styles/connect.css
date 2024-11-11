@@ -26,6 +26,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     padding: 10px;
     background-color: var(--branco);
     border-radius: 10px;
@@ -46,5 +47,24 @@ body {
     text-align: center;
     vertical-align: middle;
 }
+
+.indicator {
+    position: relative;
+    /* background-color: #efae54; */
+    width: 100%;
+    height: 5vh;
+}
+
+.arrow-indicator {
+    position: absolute;
+    font-size: 2.2rem;
+    color: var(--amarelo);
+    top: 0;
+    left: 50%; /* Centraliza a seta */
+    transform: translateX(-50%);
+    transition: left 0.2s;
+    pointer-events: none;
+}
+
 
 
