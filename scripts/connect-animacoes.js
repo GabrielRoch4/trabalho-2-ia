@@ -1,16 +1,12 @@
-// Seleciona todas as células
 const cells = document.querySelectorAll('.cell');
+const arrowIndicator = document.querySelector('.arrow-indicator');
 
 // Função para identificar a coluna
 function highlightColumn(event) {
     const cellId = event.target.id;
+    console.log("Célula: " + cellId)
     const column = cellId.split(',')[1]; // Obtém o número da coluna do id
     console.log(`Coluna: ${column}`); // Exibe a coluna no console ou realiza outra ação desejada
-
-    // Adiciona a classe de destaque a todas as células dessa coluna
-    document.querySelectorAll(`.cell[id$=",${column}"]`).forEach(cell => {
-        cell.classList.add('highlight');
-    });
 }
 
 // Remove o destaque da coluna quando o cursor sai
@@ -28,7 +24,6 @@ cells.forEach(cell => {
     cell.addEventListener('mouseout', removeHighlight);
 });
 
-const arrowIndicator = document.querySelector('.arrow-indicator');
 
 // Função para mostrar e posicionar a seta acima da coluna
 function showArrow(event) {
