@@ -8,7 +8,87 @@
 </head>
 <body>
     <div class="connect">
-        
+        <div class="indicator"></div> <!-- Indicador de posição do cursor -->
+        <table class="board">
+            <!-- Tabela 8x7 com IDs baseados em posição linhaXcoluna -->
+            <!-- Linhas e colunas criadas manualmente para fácil referência no JS -->
+            <tbody>
+                <!-- Gerando cada linha -->
+                <tr>
+                    <td id="0x0" class="cell"></td>
+                    <td id="0x1" class="cell"></td>
+                    <td id="0x2" class="cell"></td>
+                    <td id="0x3" class="cell"></td>
+                    <td id="0x4" class="cell"></td>
+                    <td id="0x5" class="cell"></td>
+                    <td id="0x6" class="cell"></td>
+                    <td id="0x7" class="cell"></td>
+                </tr>
+                <tr>
+                    <td id="1x0" class="cell"></td>
+                    <td id="1x1" class="cell"></td>
+                    <td id="1x2" class="cell"></td>
+                    <td id="1x3" class="cell"></td>
+                    <td id="1x4" class="cell"></td>
+                    <td id="1x5" class="cell"></td>
+                    <td id="1x6" class="cell"></td>
+                    <td id="1x7" class="cell"></td>
+                </tr>
+                <!-- Repita esse padrão até o total de 7 linhas -->
+                <tr>
+                    <td id="2x0" class="cell"></td>
+                    <td id="2x1" class="cell"></td>
+                    <td id="2x2" class="cell"></td>
+                    <td id="2x3" class="cell"></td>
+                    <td id="2x4" class="cell"></td>
+                    <td id="2x5" class="cell"></td>
+                    <td id="2x6" class="cell"></td>
+                    <td id="2x7" class="cell"></td>
+                </tr>
+                <tr>
+                    <td id="3x0" class="cell"></td>
+                    <td id="3x1" class="cell"></td>
+                    <td id="3x2" class="cell"></td>
+                    <td id="3x3" class="cell"></td>
+                    <td id="3x4" class="cell"></td>
+                    <td id="3x5" class="cell"></td>
+                    <td id="3x6" class="cell"></td>
+                    <td id="3x7" class="cell"></td>
+                </tr>
+                <tr>
+                    <td id="4x0" class="cell"></td>
+                    <td id="4x1" class="cell"></td>
+                    <td id="4x2" class="cell"></td>
+                    <td id="4x3" class="cell"></td>
+                    <td id="4x4" class="cell"></td>
+                    <td id="4x5" class="cell"></td>
+                    <td id="4x6" class="cell"></td>
+                    <td id="4x7" class="cell"></td>
+                </tr>
+                <tr>
+                    <td id="5x0" class="cell"></td>
+                    <td id="5x1" class="cell"></td>
+                    <td id="5x2" class="cell"></td>
+                    <td id="5x3" class="cell"></td>
+                    <td id="5x4" class="cell"></td>
+                    <td id="5x5" class="cell"></td>
+                    <td id="5x6" class="cell"></td>
+                    <td id="5x7" class="cell"></td>
+                </tr>
+                <tr>
+                    <td id="6x0" class="cell"></td>
+                    <td id="6x1" class="cell"></td>
+                    <td id="6x2" class="cell"></td>
+                    <td id="6x3" class="cell"></td>
+                    <td id="6x4" class="cell"></td>
+                    <td id="6x5" class="cell"></td>
+                    <td id="6x6" class="cell"></td>
+                    <td id="6x7" class="cell"></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+
+    <script src="../scripts/connect-animacoes.js"></script>
 </body>
 </html>

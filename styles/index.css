@@ -126,3 +126,33 @@ body {
     transform: scale(1.1);
 }
 
+.options {
+    margin: 20px 25px;
+    text-align: center;
+    color: var(--branco);
+    font-size: 2rem;
+}
+
+.options label {
+    display: block;
+    margin-top: 10px;
+}
+
+.options select {
+    margin: 5px;
+    padding: 10px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    border: 2px solid var(--branco);
+    background-color: var(--azul);
+    color: var(--branco);
+    transition: background-color 0.3s ease;
+}
+
+/* Remova o efeito hover que muda para amarelo */
+.options select:hover {
+    background-color: var(--azul);
+}
+
+
+

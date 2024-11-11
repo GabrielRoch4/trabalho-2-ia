@@ -1,18 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Galindo&display=swap');
 
-/* https://celke.com.br/artigo/tabela-de-cores-html-nome-hexadecimal-rgb */
-
 :root {
     --azul: #000099;
     --amarelo: #efae54;
-    --verde: #008000;
-    --vermelho: #FF6347;
     --branco: #ffffff;
 }
 
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -22,12 +19,32 @@ body {
     font-family: "Galindo", sans-serif;
     display: flex;
     justify-content: center;
-    flex-direction: column;
     align-items: center;
 }
 
 .connect {
-    width: 500px;
-    height: 500px;
-    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--branco);
+    border-radius: 10px;
 }
+
+.board {
+    border-spacing: 5px; /* Espaço entre as células */
+    border-collapse: separate; /* Desfaz a fusão das bordas das células */
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    background-color: var(--azul);
+    border-radius: 50%; /* Círculo */
+    padding: 0;
+    /* Alinhamento das células, evitando espaçamento extra */
+    text-align: center;
+    vertical-align: middle;
+}
+
+
