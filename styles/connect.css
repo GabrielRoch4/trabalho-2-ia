@@ -4,6 +4,8 @@
     --azul: #000099;
     --amarelo: #efae54;
     --branco: #ffffff;
+    --verde: #008000;
+    --vermelho: #FF6347;
 }
 
 * {
@@ -66,5 +68,21 @@ body {
     pointer-events: none;
 }
 
+/* Animação de queda */
+@keyframes fall {
+    0% {
+        transform: translateY(-200px); /* Inicia acima da célula */
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0); /* Finaliza na posição da célula */
+        opacity: 1;
+    }
+}
+
+/* Classe para a célula com animação de queda */
+.falling {
+    animation: fall 0.5s ease-in-out forwards;
+}
 
 
